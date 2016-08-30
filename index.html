@@ -470,7 +470,17 @@ var c4f_words = [
 ];
 
 function c4f_new() {
-    document.getElementById("c4f_p").innerHTML = "Clicked new";
+    var c4f_table = "<table>";
+    for (var y = 0; y < 5; y++) {
+      c4f_table += "<tr>";
+      for (var x = 0; x < 5; x++) {
+        var c4f_word = c4f_words[Math.floor(Math.random()*c4f_words.length)];
+        c4f_table += "<td>" + c4f_word + "</td>";
+      }
+      c4f_table += "</tr>";
+    }
+    c4f_table += "</table>";
+    document.getElementById("c4f_p").innerHTML = c4f_table;
 }
 function c4f_load() {
     document.getElementById("c4f_p").innerHTML = "Clicked load";

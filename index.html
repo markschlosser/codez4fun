@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-  
+
   <!--
     <section class="page-header">
       <h1 class="project-name">Codez4fun</h1>
@@ -477,29 +477,90 @@ function c4f_flip () {
 
 function c4f_new() {
     // starter gets 9, second gets 8
+    var c4f_word_indices = [-1,-1,-1,-1,-1,
+                            -1,-1,-1,-1,-1,
+                            -1,-1,-1,-1,-1,
+                            -1,-1,-1,-1,-1,
+                            -1,-1,-1,-1,-1];
+    var c4f_team_codes =   [3,3,3,3,3,
+                            3,3,3,3,3,
+                            3,3,3,3,3,
+                            3,3,3,3,3,
+                            3,3,3,3,3];
+
     var c4f_key = "";
     var c4f_html = "";
     var c4f_html2 = "";
-    if (c4f_flip()) {
-      c4f_key += "R;";
+
+    var c4f_first = c4f_flip();
+    if (c4f_first) {
+      c4f_key += "1;";
       c4f_html += "<p>Red goes first.</p>";
     }
     else {
-      c4f_key += "B;";
+      c4f_key += "0;";
       c4f_html += "<p>Blue goes first.</p>";
     }
+
+    for (var i = 0; i < 9; i++) { // set starting team locations
+        var team_ndx = Math.floor(Math.random()*c4f_team_codes.length);
+        while (3 != c4f_team_codes[team_ndx])
+            team_ndx = Math.floor(Math.random()*c4f_team_codes.length);
+        c4f_team_codes[team_ndx] = c4f_first;
+    }
+    for (var i = 0; i < 8; i++) { // set second team locations
+        var team_ndx = Math.floor(Math.random()*c4f_team_codes.length);
+        while (3 != c4f_team_codes[team_ndx])
+            team_ndx = Math.floor(Math.random()*c4f_team_codes.length);
+        c4f_team_codes[team_ndx] = c4f_first ? 0 : 1;
+    }
+    // set assassin location
+    var team_ndx = Math.floor(Math.random()*c4f_team_codes.length);
+    while (3 != c4f_team_codes[team_ndx])
+        team_ndx = Math.floor(Math.random()*c4f_team_codes.length);
+    c4f_team_codes[team_ndx] = 2;
+
     c4f_html += "<table>";
     c4f_html2 += "<table>";
+    var true_i = 0;
     for (var y = 0; y < 5; y++) {
       c4f_html += "<tr>";
       c4f_html2 += "<tr>";
       for (var x = 0; x < 5; x++) {
-        var c4f_ndx = Math.floor(Math.random()*c4f_words.length);
-        while (!c4f_iskeyvalid(c4f_key, c4f_ndx))
+        var ismatch = true;
+        while (ismatch) {
+            ismatch = false;
+            c4f_ndx = Math.floor(Math.random()*c4f_words.length);
+            for (var i = 0; i < 25; i++) {
+                if (c4f_ndx == c4f_word_indices[i]) {
+                    ismatch = true;
+                }
+            }
+        }
+        c4f_word_indices[true_i] = c4f_ndx;
+
         c4f_key += c4f_ndx + ";";
+        if (0 == c4f_team_codes[true_i]) c4f_key += "0;";
+        else if (1 == c4f_team_codes[true_i]) c4f_key += "1;";
+        else if (2 == c4f_team_codes[true_i]) c4f_key += "2;";
+        else c4f_key += "3;";
+
         var c4f_word = c4f_words[c4f_ndx];
         c4f_html += "<td>" + c4f_word + "</td>";
-        c4f_html2 += "<td>" + c4f_word + "</td>";
+
+        if (0 == c4f_team_codes[true_i]) { // blue
+            c4f_html2 += "<td><font color='#0000ff'>" + c4f_word + "</font></td>";
+        }
+        else if (1 == c4f_team_codes[true_i]) { // red
+            c4f_html2 += "<td><font color='#ff0000'>" + c4f_word + "</font></td>";
+        }
+        else if (2 == c4f_team_codes[true_i]) { // assassin
+            c4f_html2 += "<td bgcolor='#000000'><font color='#ffffff'>" + c4f_word + "</font></td>";
+        }
+        else { // neutral
+            c4f_html2 += "<td><font color='#000000'>" + c4f_word + "</font></td>";
+        }
+        true_i++;
       }
       c4f_html += "</tr>";
       c4f_html2 += "</tr>";
@@ -521,6 +582,6 @@ function c4f_load() {
 
     </section>
 
-  
+
   </body>
 </html>

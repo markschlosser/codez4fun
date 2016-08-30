@@ -17,15 +17,22 @@
     </section>
     
     <section class="main-content">
-      <h3>
-<a id="new" class="anchor" href="#new" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>New</h3>
 
-<h3>
-<a id="continue" class="anchor" href="#continue" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Continue</h3>
+<h3><button onclick="c4f_new()">Click me</button>New</h3>
 
-<script type="text/javascript">
-  document.write("hello world");
+<h3><button onclick="c4f_continue()">Click me</button>Continue</h3>
+
+<p id="c4f_p"></p>
+
+<script>
+function c4f_new() {
+    document.getElementById("c4f_p").innerHTML = "Clicked new";
+}
+function c4f_continue() {
+    document.getElementById("c4f_p").innerHTML = "Clicked continue";
+}
 </script>
+
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/markschlosser/codez4fun">Codez4fun</a> is maintained by <a href="https://github.com/markschlosser">markschlosser</a>.</span>

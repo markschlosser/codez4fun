@@ -471,13 +471,30 @@ var c4f_words = [
 "YARD"
 ];
 
+var c4f_key = "";
+
+function c4f_flip () {
+    return Math.floor(Math.random() * 2) ? true : false;
+}
+
 function c4f_new() {
-    var c4f_table = "<table>";
+    c4f_key = "";
+    var c4f_text = "";
+    if (c4f_flip()) {
+      c4f_key += "R;";
+      c4f_text += "Red goes first.";
+    }
+    else {
+      c4f_key += "B;";
+      c4f_text += "Blue goes first.";
+    }
+    c4f_text += "<table>";
     for (var y = 0; y < 5; y++) {
       c4f_table += "<tr>";
       for (var x = 0; x < 5; x++) {
         var c4f_word = c4f_words[Math.floor(Math.random()*c4f_words.length)];
         c4f_table += "<td>" + c4f_word + "</td>";
+        c4f_key == c4f_word + ";";
       }
       c4f_table += "</tr>";
     }

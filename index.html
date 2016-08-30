@@ -471,35 +471,33 @@ var c4f_words = [
 "YARD"
 ];
 
-var c4f_key = "";
-
 function c4f_flip () {
     return Math.floor(Math.random() * 2) ? true : false;
 }
 
 function c4f_new() {
-    c4f_key = "";
-    var c4f_text = "";
+    var c4f_key = "";
+    var c4f_html = "";
     if (c4f_flip()) {
       c4f_key += "R;";
-      c4f_text += "Red goes first.";
+      c4f_html += "Red goes first.";
     }
     else {
       c4f_key += "B;";
-      c4f_text += "Blue goes first.";
+      c4f_html += "Blue goes first.";
     }
-    c4f_text += "<table>";
+    c4f_html += "<table>";
     for (var y = 0; y < 5; y++) {
-      c4f_table += "<tr>";
+      c4f_html += "<tr>";
       for (var x = 0; x < 5; x++) {
         var c4f_word = c4f_words[Math.floor(Math.random()*c4f_words.length)];
-        c4f_table += "<td>" + c4f_word + "</td>";
+        c4f_html += "<td>" + c4f_word + "</td>";
         c4f_key == c4f_word + ";";
       }
-      c4f_table += "</tr>";
+      c4f_html += "</tr>";
     }
-    c4f_table += "</table>";
-    document.getElementById("c4f_p").innerHTML = c4f_table;
+    c4f_html += "</table>";
+    document.getElementById("c4f_p").innerHTML = c4f_html;
 }
 function c4f_load() {
     document.getElementById("c4f_p").innerHTML = "Clicked load";

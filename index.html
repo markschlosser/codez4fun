@@ -490,9 +490,10 @@ function c4f_new() {
     for (var y = 0; y < 5; y++) {
       c4f_html += "<tr>";
       for (var x = 0; x < 5; x++) {
-        var c4f_word = c4f_words[Math.floor(Math.random()*c4f_words.length)];
+        var c4f_ndx = Math.floor(Math.random()*c4f_words.length);
+        var c4f_word = c4f_words[c4f_ndx];
         c4f_html += "<td>" + c4f_word + "</td>";
-        c4f_key += c4f_word + ";";
+        c4f_key += c4f_ndx + ";";
       }
       c4f_html += "</tr>";
     }

@@ -515,27 +515,27 @@ function c4f_load_key(key_to_load) {
         }
 
         if (0 == team_code) { // blue
-            c4f_html2 += "<td><font color='#0000ff'>" + c4f_word + "</font></td>";
+            c4f_html2 += "<td style='border: 1px solid #e9ebec'><font color='#0000ff'>" + c4f_word + "</font></td>";
             if ("1" == public_reveal) {
-              c4f_html += "<td><font color='#0000ff'>" + c4f_word + "</font></td>";
+              c4f_html += "<td style='border: 1px solid #e9ebec'><font color='#0000ff'>" + c4f_word + "</font></td>";
             }
         }
         else if (1 == team_code) { // red
-            c4f_html2 += "<td><font color='#ff0000'>" + c4f_word + "</font></td>";
+            c4f_html2 += "<td style='border: 1px solid #e9ebec'><font color='#ff0000'>" + c4f_word + "</font></td>";
             if ("1" == public_reveal) {
-              c4f_html += "<td><font color='#ff0000'>" + c4f_word + "</font></td>";
+              c4f_html += "<td style='border: 1px solid #e9ebec'><font color='#ff0000'>" + c4f_word + "</font></td>";
             }
         }
         else if (2 == team_code) { // assassin
-            c4f_html2 += "<td bgcolor='#000000'><font color='#ffffff'>" + c4f_word + "</font></td>";
+            c4f_html2 += "<td bgcolor='#000000' style='border: 1px solid #e9ebec'><font color='#ffffff'>" + c4f_word + "</font></td>";
             if ("1" == public_reveal) {
-              c4f_html += "<td bgcolor='#000000'><font color='#ffffff'>" + c4f_word + "</font></td>";
+              c4f_html += "<td bgcolor='#000000' style='border: 1px solid #e9ebec'><font color='#ffffff'>" + c4f_word + "</font></td>";
             }
         }
         else { // neutral
-            c4f_html2 += "<td><font color='#000000'>" + c4f_word + "</font></td>";
+            c4f_html2 += "<td style='border: 1px solid #e9ebec'><font color='#000000'>" + c4f_word + "</font></td>";
             if ("1" == public_reveal) {
-              c4f_html += "<td><font color='#989898'>" + c4f_word + "</font></td>";
+              c4f_html += "<td style='border: 1px solid #e9ebec'><font color='#989898'>" + c4f_word + "</font></td>";
             }
         }
       }

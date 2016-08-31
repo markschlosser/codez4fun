@@ -476,6 +476,62 @@ function c4f_flip () {
     return Math.floor(Math.random() * 2) ? true : false;
 }
 
+function c4f_load_key(key_to_load) {
+    var split_key = key_to_load.split (";");
+    var split_key_i = 0;
+  
+    var c4f_html = "";
+    var c4f_html2 = "";
+
+    c4f_html += "<h3>Screencap this grid and send it to ALL players:</h3>";
+    c4f_html2 += "<h3>Screencap this grid and send it ONLY to the other spymaster:</h3>";
+    var c4f_first = "1" === split_key[split_key_i] ? 1 : 0;
+    split_key_i++;
+    if (c4f_first) {
+      c4f_html += "<p>Red goes first.</p>";
+      c4f_html2 += "<p>Red goes first.</p>";
+    }
+    else {
+      c4f_html += "<p>Blue goes first.</p>";
+      c4f_html2 += "<p>Blue goes first.</p>";
+    }
+
+    c4f_html += "<table>";
+    c4f_html2 += "<table>";
+    var true_i = 0;
+    for (var y = 0; y < 5; y++) {
+      c4f_html += "<tr>";
+      c4f_html2 += "<tr>";
+      for (var x = 0; x < 5; x++) {
+        var word_ndx = split_key[split_key_i];  split_key_i++;
+        var team_code = split_key[split_key_i];  split_key_i++;
+        var public_reveal = split_key[split_key_i];  split_key_i++;
+
+        var c4f_word = c4f_words[word_ndx];
+        c4f_html += "<td>" + c4f_word + "</td>";
+
+        if (0 == team_code) { // blue
+            c4f_html2 += "<td><font color='#0000ff'>" + c4f_word + "</font></td>";
+        }
+        else if (1 == team_code) { // red
+            c4f_html2 += "<td><font color='#ff0000'>" + c4f_word + "</font></td>";
+        }
+        else if (2 == team_code) { // assassin
+            c4f_html2 += "<td bgcolor='#000000'><font color='#ffffff'>" + c4f_word + "</font></td>";
+        }
+        else { // neutral
+            c4f_html2 += "<td><font color='#000000'>" + c4f_word + "</font></td>";
+        }
+      }
+      c4f_html += "</tr>";
+      c4f_html2 += "</tr>";
+    }
+    c4f_html += "</table>";
+    c4f_html2 += "</table>";
+    document.getElementById("c4f_p").innerHTML = c4f_html + c4f_html2 + "<h3>Copy and paste this key ONLY to the other spymaster.  This key allows a spymaster to reload this game state on this web site in order to reveal words on the public screencap.  Once you do that, you will receive a new public key which will be able to load that newest updated game state.</h3>";
+    document.getElementById("c4f_key_input").value = key_to_load;
+}
+
 function c4f_new() {
     // starter gets 9, second gets 8
     var c4f_word_indices = [-1,-1,-1,-1,-1,
@@ -490,19 +546,13 @@ function c4f_new() {
                             3,3,3,3,3];
 
     var c4f_key = "";
-    var c4f_html = "";
-    var c4f_html2 = "";
 
-    c4f_html += "<h3>Screencap this grid and send it to all players:</h3>";
-    c4f_html2 += "<h3>Screencap this grid and send it ONLY to the other spymaster:</h3>";
     var c4f_first = c4f_flip();
     if (c4f_first) {
       c4f_key += "1;";
-      c4f_html += "<p>Red goes first.</p>";
     }
     else {
       c4f_key += "0;";
-      c4f_html += "<p>Blue goes first.</p>";
     }
 
     for (var i = 0; i < 9; i++) { // set starting team locations
@@ -523,12 +573,8 @@ function c4f_new() {
         team_ndx = Math.floor(Math.random()*c4f_team_codes.length);
     c4f_team_codes[team_ndx] = 2;
 
-    c4f_html += "<table>";
-    c4f_html2 += "<table>";
     var true_i = 0;
     for (var y = 0; y < 5; y++) {
-      c4f_html += "<tr>";
-      c4f_html2 += "<tr>";
       for (var x = 0; x < 5; x++) {
         var ismatch = true;
         while (ismatch) {
@@ -548,32 +594,13 @@ function c4f_new() {
         else if (2 == c4f_team_codes[true_i]) c4f_key += "2;";
         else c4f_key += "3;";
 
-        var c4f_word = c4f_words[c4f_ndx];
-        c4f_html += "<td>" + c4f_word + "</td>";
-
-        if (0 == c4f_team_codes[true_i]) { // blue
-            c4f_html2 += "<td><font color='#0000ff'>" + c4f_word + "</font></td>";
-        }
-        else if (1 == c4f_team_codes[true_i]) { // red
-            c4f_html2 += "<td><font color='#ff0000'>" + c4f_word + "</font></td>";
-        }
-        else if (2 == c4f_team_codes[true_i]) { // assassin
-            c4f_html2 += "<td bgcolor='#000000'><font color='#ffffff'>" + c4f_word + "</font></td>";
-        }
-        else { // neutral
-            c4f_html2 += "<td><font color='#000000'>" + c4f_word + "</font></td>";
-        }
         true_i++;
       }
-      c4f_html += "</tr>";
-      c4f_html2 += "</tr>";
     }
-    c4f_html += "</table>";
-    c4f_html2 += "</table>";
-    //c4f_html += "<p>Spymaster key: " + "<input type='text' size='48' value='" + c4f_key + "'>" + "</p>";
-    document.getElementById("c4f_p").innerHTML = c4f_html + c4f_html2 + "<h3>Copy and paste this key ONLY to the other spymaster.  This key allows a spymaster to reload this game state on this web site in order to reveal words on the public screencap.</h3>";
-    document.getElementById("c4f_key_input").value = c4f_key;
+
+    c4f_load_key (c4f_key);
 }
+
 function c4f_load() {
     document.getElementById("c4f_p").innerHTML = "Clicked load";
 }

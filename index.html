@@ -24,6 +24,7 @@
 
 <p id="c4f_p">
 </p>
+<p>Spymaster key: <input id='c4f_key_input' type='text' size='48' value=''></p>
 
 <script>
 var c4f_words = [
@@ -567,8 +568,9 @@ function c4f_new() {
     }
     c4f_html += "</table>";
     c4f_html2 += "</table>";
-    c4f_html += "<p>Spymaster key: " + "<input type='text' size='48' value='" + c4f_key + "'>" + "</p>";
+    //c4f_html += "<p>Spymaster key: " + "<input type='text' size='48' value='" + c4f_key + "'>" + "</p>";
     document.getElementById("c4f_p").innerHTML = c4f_html + c4f_html2;
+    document.getElementById("c4f_key_input").value = c4f_key;
 }
 function c4f_load() {
     document.getElementById("c4f_p").innerHTML = "Clicked load";

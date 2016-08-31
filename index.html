@@ -542,7 +542,7 @@ function c4f_load_key(key_to_load) {
     }
     c4f_html += "</table>";
     c4f_html2 += "</table>";
-    document.getElementById("c4f_p").innerHTML = "<input id='c4f_word_input' type='text' size='16' value=''> <button onclick='c4f_reveal()'>Reveal A Word</button>" + c4f_html + c4f_html2 + "<h3>Copy and paste this key ONLY to the other spymaster.  This key allows a spymaster to reload this game state using this web site in order to reveal words on the public grid.  Once you reveal a word, this box will contain a new key which you must then use to get back to that edited game state.</h3>";
+    document.getElementById("c4f_p").innerHTML = "<input id='c4f_word_input' type='text' size='16' value=''> <button onclick='c4f_reveal()'>Reveal Word</button>" + c4f_html + c4f_html2 + "<h3>Copy and paste this key ONLY to the other spymaster.  This key allows a spymaster to reload this game state using this web site in order to reveal words on the public grid.  Once you reveal a word, this box will contain a new key which you must then use to get back to that edited game state.</h3>";
     document.getElementById("c4f_key_input").value = key_to_load;
 }
 

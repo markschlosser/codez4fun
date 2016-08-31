@@ -498,12 +498,12 @@ function c4f_load_key(key_to_load) {
       c4f_html2 += "<p>Blue goes first.</p>";
     }
 
-    c4f_html += "<table width='350px' style='border: 1px solid #e9ebec'>";
-    c4f_html2 += "<table width='350px' style='border: 1px solid #e9ebec'>";
+    c4f_html += "<table width='350px' style='border: 1px solid #000000'>";
+    c4f_html2 += "<table width='350px' style='border: 1px solid #000000'>";
     var true_i = 0;
     for (var y = 0; y < 5; y++) {
-      c4f_html += "<tr style='border: 1px solid #e9ebec'>";
-      c4f_html2 += "<tr style='border: 1px solid #e9ebec'>";
+      c4f_html += "<tr style='border: 1px solid #000000'>";
+      c4f_html2 += "<tr style='border: 1px solid #000000'>";
       for (var x = 0; x < 5; x++) {
         var word_ndx = split_key[split_key_i];  split_key_i++;
         var team_code = split_key[split_key_i];  split_key_i++;
@@ -511,31 +511,31 @@ function c4f_load_key(key_to_load) {
 
         var c4f_word = c4f_words[word_ndx];
         if ("0" == public_reveal) {
-          c4f_html += "<td style='border: 1px solid #e9ebec'>" + c4f_word + "</td>";
+          c4f_html += "<td style='border: 1px solid #000000'>" + c4f_word + "</td>";
         }
 
         if (0 == team_code) { // blue
-            c4f_html2 += "<td style='border: 1px solid #e9ebec'><font color='#0000ff'>" + c4f_word + "</font></td>";
+            c4f_html2 += "<td style='border: 1px solid #000000'><font color='#0000ff'>" + c4f_word + "</font></td>";
             if ("1" == public_reveal) {
-              c4f_html += "<td style='border: 1px solid #e9ebec'><font color='#0000ff'>" + c4f_word + "</font></td>";
+              c4f_html += "<td style='border: 1px solid #000000'><font color='#0000ff'>" + c4f_word + "</font></td>";
             }
         }
         else if (1 == team_code) { // red
-            c4f_html2 += "<td style='border: 1px solid #e9ebec'><font color='#ff0000'>" + c4f_word + "</font></td>";
+            c4f_html2 += "<td style='border: 1px solid #000000'><font color='#ff0000'>" + c4f_word + "</font></td>";
             if ("1" == public_reveal) {
-              c4f_html += "<td style='border: 1px solid #e9ebec'><font color='#ff0000'>" + c4f_word + "</font></td>";
+              c4f_html += "<td style='border: 1px solid #000000'><font color='#ff0000'>" + c4f_word + "</font></td>";
             }
         }
         else if (2 == team_code) { // assassin
-            c4f_html2 += "<td bgcolor='#000000' style='border: 1px solid #e9ebec'><font color='#ffffff'>" + c4f_word + "</font></td>";
+            c4f_html2 += "<td bgcolor='#000000' style='border: 1px solid #000000'><font color='#ffffff'>" + c4f_word + "</font></td>";
             if ("1" == public_reveal) {
-              c4f_html += "<td bgcolor='#000000' style='border: 1px solid #e9ebec'><font color='#ffffff'>" + c4f_word + "</font></td>";
+              c4f_html += "<td bgcolor='#000000' style='border: 1px solid #000000'><font color='#ffffff'>" + c4f_word + "</font></td>";
             }
         }
         else { // neutral
-            c4f_html2 += "<td style='border: 1px solid #e9ebec'><font color='#000000'>" + c4f_word + "</font></td>";
+            c4f_html2 += "<td style='border: 1px solid #000000'><font color='#000000'>" + c4f_word + "</font></td>";
             if ("1" == public_reveal) {
-              c4f_html += "<td style='border: 1px solid #e9ebec'><font color='#989898'>" + c4f_word + "</font></td>";
+              c4f_html += "<td style='border: 1px solid #000000'><font color='#989898'>" + c4f_word + "</font></td>";
             }
         }
       }

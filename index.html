@@ -625,7 +625,7 @@ function c4f_reveal() {
     var split_key = key_to_edit.split (";");
     var split_key_i = 0;
   
-    new_key += "1" === split_key[split_key_i] ? 1 : 0;
+    new_key += split_key[split_key_i] + ";";
     split_key_i++;
 
     var true_i = 0;
@@ -635,12 +635,15 @@ function c4f_reveal() {
         var team_code = split_key[split_key_i];  split_key_i++;
         var public_reveal = split_key[split_key_i];  split_key_i++;
 
-        new_key += word_ndx;
-        new_key += team_code;
+        new_key += word_ndx + ";";
+        new_key += team_code + ";";
 
         var c4f_word = c4f_words[word_ndx];
         if (c4f_word === word_to_reveal) {
-          new_key += "1";
+          new_key += "1" + ";";
+        }
+        else {
+          new_key += public_reveal + ";";
         }
       }
     }

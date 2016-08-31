@@ -620,6 +620,8 @@ function c4f_new() {
 function c4f_reveal() {
     var word_to_reveal = document.getElementById("c4f_word_input").value;
     var key_to_edit = document.getElementById("c4f_key_input").value;
+  
+    word_to_reveal = word_to_reveal.toUpperCase ();
 
     var new_key = "";
     var split_key = key_to_edit.split (";");
